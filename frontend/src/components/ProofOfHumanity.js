@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useWallet } from './WalletContext';
+import { ethers } from 'ethers';
+
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || (window.location.hostname === 'localhost' ? 'http://localhost:9000' : 'http://159.65.134.137:9000');
 

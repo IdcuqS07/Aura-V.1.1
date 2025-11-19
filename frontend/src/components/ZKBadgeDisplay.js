@@ -37,7 +37,9 @@ const ZKBadgeDisplay = () => {
           if (type.includes('reputation')) badgeData.reputation = true;
           if (type.includes('civic')) badgeData.civic = true;
           if (type.includes('worldcoin')) badgeData.worldcoin = true;
+          if (type.includes('humanity') || type.includes('poh')) badgeData.poh = true;
         });
+
       }
       
       setBadges(badgeData);
@@ -69,8 +71,16 @@ const ZKBadgeDisplay = () => {
       description: 'High on-chain reputation score achieved',
       color: 'from-yellow-500 to-yellow-700',
       textColor: 'text-yellow-100'
+    },
+    poh: {
+      icon: Shield,
+      title: 'Proof of Humanity',
+      description: 'Verified human identity through ZK proofs',
+      color: 'from-green-500 to-green-700',
+      textColor: 'text-green-100'
     }
   };
+  
 
   const BadgeCard = ({ badgeType, config, isOwned }) => {
     const IconComponent = config.icon;

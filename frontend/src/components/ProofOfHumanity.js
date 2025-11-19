@@ -157,41 +157,6 @@ export default function ProofOfHumanity() {
     }
   };
 
-  
-      // Step 2: Send to backend with signature
-      const response = await fetch(`${BACKEND_URL}/api/poh/issue`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          proof_hash: proofHash,
-          nullifier: nullifier,
-          wallet_address: address,
-          public_signals: [score],
-          message: message,
-          signature: signature
-        })
-      });
-      
-      const data = await response.json();
-      if (data.tx_hash) {
-        setTxHash(data.tx_hash);
-        setStep(4);
-        setTimeout(() => {
-          window.location.href = '/dashboard';
-        }, 5000);
-      } else {
-        throw new Error('No transaction hash received');
-      }
-    } catch (error) {
-      if (error.code === 4001) {
-        setError('User rejected the signature request');
-      } else {
-        setError('Badge minting failed: ' + error.message);
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="max-w-4xl mx-auto p-6">

@@ -3,8 +3,7 @@ import { useWallet } from './WalletContext';
 import { ethers } from 'ethers';
 
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || (window.location.hostname === 'localhost' ? 'http://localhost:9000' : 'http://159.65.134.137:9000');
-
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://api.aurapass.xyz';
 const GITHUB_CLIENT_ID = process.env.REACT_APP_GITHUB_CLIENT_ID || '';
 const TWITTER_CLIENT_ID = process.env.REACT_APP_TWITTER_CLIENT_ID || '';
 
@@ -97,7 +96,7 @@ export default function ProofOfHumanity() {
       setStep(2);
     } catch (error) {
       console.error('Enrollment error:', error);
-      alert('Enrollment failed: ' + error.message + '\n\nMake sure backend is running on port 9000');
+      alert('Enrollment failed: ' + error.message);
     } finally {
       setLoading(false);
     }

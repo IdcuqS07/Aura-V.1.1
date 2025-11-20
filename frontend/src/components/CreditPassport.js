@@ -229,7 +229,7 @@ const CreditPassport = () => {
                   </div>
                   <div className="p-4 bg-white/10 backdrop-blur-sm rounded-xl">
                     <div className="text-white/70 text-xs mb-1">Badges</div>
-                    <div className="text-2xl font-bold text-white">{badges.length}</div>
+                    <div className="text-2xl font-bold text-white">{passport?.badge_count || badges.length}</div>
                   </div>
                 </div>
 

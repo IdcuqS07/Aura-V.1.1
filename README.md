@@ -250,7 +250,7 @@ MIT License - see [LICENSE](LICENSE) for details
 ## 🔗 Links
 
 - **Live Application**: https://www.aurapass.xyz/
-- **API Endpoint**: https://api.aurapass.xyz
+- **API Endpoint**: https://api.aurapass.xyz/health
 - **GitHub**: https://github.com/IdcuqS07/Aura-V.1.1
 - **Polygon Amoy Explorer**: https://amoy.polygonscan.com/
 - **SimpleZKBadge Contract**: https://amoy.polygonscan.com/address/0x9e6343BB504Af8a39DB516d61c4Aa0aF36c54678

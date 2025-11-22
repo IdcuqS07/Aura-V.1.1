@@ -1,0 +1,53 @@
+# 🚀 Deployment Commands - Copy & Paste
+
+## STEP 1: Upload (Run on Mac)
+./step1-upload.sh
+
+# Or manual:
+scp aura-deploy.tar.gz root@159.65.134.137:/root/
+
+## STEP 2: SSH to VPS
+ssh root@159.65.134.137
+
+## STEP 3: Setup on VPS (Run on VPS)
+cd /root
+tar -xzf aura-deploy.tar.gz
+chmod +x step2-vps-setup.sh step3-firewall.sh
+./step2-vps-setup.sh
+
+## STEP 4: Firewall (Run on VPS)
+./step3-firewall.sh
+
+## STEP 5: Verify (Run on VPS)
+docker-compose -f docker-compose.production.yml ps
+curl http://localhost:8080/api/
+
+## STEP 6: Test from Browser
+http://159.65.134.137:3030
+http://159.65.134.137:8080
+
+## Useful Commands (On VPS)
+
+# Check status
+docker ps
+docker-compose -f docker-compose.production.yml ps
+
+# View logs
+docker-compose -f docker-compose.production.yml logs -f
+docker logs aura-backend
+docker logs aura-frontend
+
+# Restart services
+docker-compose -f docker-compose.production.yml restart
+
+# Stop services
+docker-compose -f docker-compose.production.yml down
+
+# Start services
+docker-compose -f docker-compose.production.yml up -d
+
+# Check firewall
+ufw status
+
+# Check ports
+netstat -tulpn | grep -E '3030|8080'

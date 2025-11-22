@@ -1,0 +1,46 @@
+type Badge @entity(immutable: false) {
+  id: ID!
+  tokenId: BigInt!
+  owner: Bytes!
+  badgeType: String!
+  zkProofHash: Bytes!
+  issuedAt: BigInt!
+  txHash: Bytes!
+}
+
+type Passport @entity(immutable: false) {
+  id: ID!
+  tokenId: BigInt!
+  owner: Bytes!
+  creditScore: BigInt!
+  pohScore: BigInt!
+  badgeCount: BigInt!
+  onchainActivity: BigInt!
+  issuedAt: BigInt!
+  lastUpdated: BigInt!
+  txHash: Bytes!
+}
+
+type ScoreUpdate @entity(immutable: true) {
+  id: ID!
+  passport: Passport!
+  oldScore: BigInt!
+  newScore: BigInt!
+  timestamp: BigInt!
+  txHash: Bytes!
+}
+
+type User @entity(immutable: false) {
+  id: ID!
+  address: Bytes!
+  totalBadges: BigInt!
+  createdAt: BigInt!
+}
+
+type GlobalStats @entity(immutable: false) {
+  id: ID!
+  totalBadges: BigInt!
+  totalPassports: BigInt!
+  totalUsers: BigInt!
+  averageCreditScore: BigInt!
+}

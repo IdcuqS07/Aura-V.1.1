@@ -1,0 +1,88 @@
+╔══════════════════════════════════════════════════════════════╗
+║         AURA PROTOCOL - QUICK DEPLOY GUIDE                   ║
+║                  Target: 21 Nov 2024                         ║
+╚══════════════════════════════════════════════════════════════╝
+
+VPS: 159.65.134.137
+Domain: aurapass.xyz
+
+┌──────────────────────────────────────────────────────────────┐
+│ OPTION 1: ONE COMMAND DEPLOY (Recommended)                   │
+└──────────────────────────────────────────────────────────────┘
+
+cd "/Users/idcuq/Documents/Aura V.1.1/Aura-V.1.0 "
+./deploy-complete.sh
+
+Then follow on-screen instructions for DNS & SSL.
+
+┌──────────────────────────────────────────────────────────────┐
+│ OPTION 2: STEP BY STEP                                       │
+└──────────────────────────────────────────────────────────────┘
+
+1. Deploy:
+   ./quick-production-deploy.sh
+
+2. Setup DNS (at domain provider):
+   A    @      159.65.134.137
+   A    www    159.65.134.137
+   A    api    159.65.134.137
+
+3. Setup SSL (after DNS ready):
+   ssh root@159.65.134.137
+   certbot --nginx -d aurapass.xyz -d www.aurapass.xyz -d api.aurapass.xyz
+
+4. Update URLs:
+   ./update-domain.sh
+
+┌──────────────────────────────────────────────────────────────┐
+│ VERIFY DEPLOYMENT                                            │
+└──────────────────────────────────────────────────────────────┘
+
+✓ https://aurapass.xyz
+✓ https://api.aurapass.xyz/api/
+✓ Connect wallet works
+✓ SSL certificate valid
+
+┌──────────────────────────────────────────────────────────────┐
+│ USEFUL COMMANDS                                              │
+└──────────────────────────────────────────────────────────────┘
+
+# View logs
+ssh root@159.65.134.137 'docker logs aura-backend -f'
+
+# Check status
+ssh root@159.65.134.137 'docker ps'
+
+# Restart services
+ssh root@159.65.134.137 'cd /root && docker-compose -f docker-compose.production.yml restart'
+
+# Stop all
+ssh root@159.65.134.137 'cd /root && docker-compose -f docker-compose.production.yml down'
+
+┌──────────────────────────────────────────────────────────────┐
+│ TROUBLESHOOTING                                              │
+└──────────────────────────────────────────────────────────────┘
+
+Backend error:
+  ssh root@159.65.134.137 'docker logs aura-backend'
+
+Frontend error:
+  ssh root@159.65.134.137 'docker logs aura-frontend'
+
+SSL error:
+  ssh root@159.65.134.137 'certbot renew --force-renewal'
+
+┌──────────────────────────────────────────────────────────────┐
+│ ESTIMATED TIME                                               │
+└──────────────────────────────────────────────────────────────┘
+
+Deploy:        10 minutes
+DNS Setup:     5 minutes (+ 5-30 min propagation)
+SSL Setup:     5 minutes
+Testing:       5 minutes
+─────────────────────────────────────
+TOTAL:         ~30-60 minutes
+
+╔══════════════════════════════════════════════════════════════╗
+║  Need help? Check DEPLOYMENT_CHECKLIST.md for details       ║
+╚══════════════════════════════════════════════════════════════╝

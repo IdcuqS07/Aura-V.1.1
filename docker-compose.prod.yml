@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: aura-backend-prod
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - MONGO_URL=${MONGO_URL}
+      - DB_NAME=${DB_NAME}
+      - POLYGON_RPC_URL=${POLYGON_RPC_URL}
+      - POLYGON_PRIVATE_KEY=${POLYGON_PRIVATE_KEY}
+      - BADGE_CONTRACT_ADDRESS=${BADGE_CONTRACT_ADDRESS}
+      - PASSPORT_CONTRACT_ADDRESS=${PASSPORT_CONTRACT_ADDRESS}
+      - CORS_ORIGINS=${CORS_ORIGINS}
+    volumes:
+      - ./backend:/app
+      - /app/venv
+    networks:
+      - aura-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: aura-frontend-prod
+    restart: always
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
+      - REACT_APP_NETWORK=polygon
+    depends_on:
+      - backend
+    networks:
+      - aura-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: aura-nginx-prod
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.production.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - aura-network
+
+networks:
+  aura-network:
+    driver: bridge

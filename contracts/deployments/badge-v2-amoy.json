@@ -1,0 +1,14 @@
+{
+  "network": "amoy",
+  "contractName": "SimpleZKBadgeV2",
+  "address": "0x3d586E681b12B07825F17Ce19B28e1F576a1aF89",
+  "deployer": "0xC3EcE9AC328CB232dDB0BC677d2e980a1a3D3974",
+  "timestamp": "2025-11-07T13:48:21.139Z",
+  "blockNumber": 28732746,
+  "features": {
+    "permissionless": true,
+    "cooldown": "1 hour",
+    "onePerType": true,
+    "soulbound": true
+  }
+}

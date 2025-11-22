@@ -1,0 +1,109 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: aura-redis
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis-data:/data
+    networks:
+      - aura-network
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:6
+    container_name: aura-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    volumes:
+      - mongo-data:/data/db
+      - ./backups:/backup
+    networks:
+      - aura-network
+    restart: unless-stopped
+
+  celery-worker:
+    build: ./backend
+    container_name: aura-celery-worker
+    command: celery -A message_queue.celery_app worker --loglevel=info
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - redis
+      - mongodb
+    networks:
+      - aura-network
+    restart: unless-stopped
+
+  event-listener:
+    build: ./backend
+    container_name: aura-event-listener
+    command: python event_listener_runner.py
+    env_file:
+      - ./backend/.env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - redis
+      - mongodb
+    networks:
+      - aura-network
+    restart: unless-stopped
+
+  monitor:
+    build: ./backend
+    container_name: aura-monitor
+    command: python monitor_runner.py
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - redis
+      - mongodb
+      - backend
+    networks:
+      - aura-network
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: aura-backend
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - redis
+      - mongodb
+    networks:
+      - aura-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build: ./frontend
+    container_name: aura-frontend
+    ports:
+      - "3030:3030"
+    environment:
+      - REACT_APP_BACKEND_URL=https://api.aurapass.xyz
+    depends_on:
+      - backend
+    networks:
+      - aura-network
+    restart: unless-stopped
+
+networks:
+  aura-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+  mongo-data:

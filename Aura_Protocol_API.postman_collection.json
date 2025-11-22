@@ -1,0 +1,281 @@
+{
+  "info": {
+    "name": "Aura Protocol - Proof-as-a-Service API",
+    "description": "Complete API collection for Aura Protocol's ZK Credit Passport system",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "value",
+        "value": "{{API_KEY}}",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:9000",
+      "type": "string"
+    },
+    {
+      "key": "API_KEY",
+      "value": "demo_key_12345",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Public API",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/health",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "v1", "health"]
+            },
+            "description": "Check API service status"
+          },
+          "response": []
+        },
+        {
+          "name": "Generate ZK Proof",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb1\",\n  \"wallet_address\": \"0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb1\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/proof/generate",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "v1", "proof", "generate"]
+            },
+            "description": "Generate a zero-knowledge proof for user's credit passport"
+          },
+          "response": []
+        },
+        {
+          "name": "Verify ZK Proof",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"proof_hash\": \"0x57e519608a7d5a03053f12e16749a13044d5a39390ffdf65d4a997c0113a8e91\",\n  \"user_id\": \"0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb1\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/proof/verify",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "v1", "proof", "verify"]
+            },
+            "description": "Verify the validity of a zero-knowledge proof"
+          },
+          "response": []
+        },
+        {
+          "name": "Query Credit Passport",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"wallet_address\": \"0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb1\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/passport/query",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "v1", "passport", "query"]
+            },
+            "description": "Retrieve user's credit passport information"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "API Key Management",
+      "item": [
+        {
+          "name": "Generate API Key",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tier\": \"free\",\n  \"user_id\": \"test_user\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/api-keys",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "api-keys"]
+            },
+            "description": "Generate a new API key"
+          },
+          "response": []
+        },
+        {
+          "name": "Get API Key Info",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/api-keys/{{API_KEY}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "api-keys", "{{API_KEY}}"]
+            },
+            "description": "Get information about an API key"
+          },
+          "response": []
+        },
+        {
+          "name": "List All API Keys (Admin)",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/admin/api-keys",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "admin", "api-keys"]
+            },
+            "description": "List all API keys (admin only)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Passport Management",
+      "item": [
+        {
+          "name": "Create Passport",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb1\",\n  \"wallet_address\": \"0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb1\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/passport/create",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "passport", "create"]
+            },
+            "description": "Create a new credit passport"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Passport",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/passport/0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb1",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "passport", "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb1"]
+            },
+            "description": "Get user's passport by user_id"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Passport",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb1\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/passport/update",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "passport", "update"]
+            },
+            "description": "Update passport credit score"
+          },
+          "response": []
+        },
+        {
+          "name": "Calculate Score",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/passport/score/0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb1",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "passport", "score", "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb1"]
+            },
+            "description": "Calculate credit score without saving"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

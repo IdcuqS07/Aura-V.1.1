@@ -1,0 +1,115 @@
+╔══════════════════════════════════════════════════════════════╗
+║              AURA PROTOCOL - QUICK COMMANDS                  ║
+╚══════════════════════════════════════════════════════════════╝
+
+📍 PRODUCTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Live: https://aurapass.xyz
+API:  https://api.aurapass.xyz
+VPS:  159.65.134.137
+
+🚀 DEPLOYMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Full deploy
+./deploy-complete.sh
+
+# Deploy monitoring
+./deploy-monitoring.sh
+
+# Update code
+./update-domain.sh
+
+# Check status
+./monitor.sh
+
+🔍 MONITORING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# System status
+./monitor.sh
+
+# Backend logs
+ssh root@159.65.134.137 'docker logs aura-backend -f'
+
+# Frontend logs
+ssh root@159.65.134.137 'docker logs aura-frontend -f'
+
+# All containers
+ssh root@159.65.134.137 'docker ps'
+
+🔄 RESTART
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Restart all
+ssh root@159.65.134.137 'cd /root && docker-compose -f docker-compose.production.yml restart'
+
+# Restart backend
+ssh root@159.65.134.137 'docker restart aura-backend'
+
+# Restart frontend
+ssh root@159.65.134.137 'docker restart aura-frontend'
+
+🧪 TESTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Test API
+curl https://api.aurapass.xyz/api/
+
+# Test monitoring
+curl https://api.aurapass.xyz/api/monitor/stats
+
+# Test ZK circuit
+cd circuits && node test_threshold.js
+
+🔐 ZK PROOF
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Compile circuits
+cd circuits && ./compile.sh
+
+# Deploy contracts
+cd contracts && npx hardhat run scripts/deploy-zk-threshold.js --network amoy
+
+# Test proof
+cd circuits && node test_threshold.js
+
+💾 BACKUP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Backup database
+ssh root@159.65.134.137 'docker exec aura-mongodb mongodump --out /backup/$(date +%Y%m%d)'
+
+# Download backup
+scp -r root@159.65.134.137:/root/backups ./local-backups
+
+🔧 MAINTENANCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Update system
+ssh root@159.65.134.137 'apt update && apt upgrade -y'
+
+# Clean Docker
+ssh root@159.65.134.137 'docker system prune -af'
+
+# Renew SSL
+ssh root@159.65.134.137 'certbot renew'
+
+📊 ANALYTICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Get stats
+curl https://api.aurapass.xyz/api/analytics
+
+# Monitor stats
+curl https://api.aurapass.xyz/api/monitor/stats
+
+# Recent activity
+curl https://api.aurapass.xyz/api/monitor/activity
+
+🆘 EMERGENCY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Stop all
+ssh root@159.65.134.137 'cd /root && docker-compose -f docker-compose.production.yml down'
+
+# Start all
+ssh root@159.65.134.137 'cd /root && docker-compose -f docker-compose.production.yml up -d'
+
+# Check errors
+ssh root@159.65.134.137 'docker logs aura-backend --tail 100 | grep -i error'
+
+╔══════════════════════════════════════════════════════════════╗
+║  For detailed docs, see PROJECT_SUMMARY.md                   ║
+╚══════════════════════════════════════════════════════════════╝

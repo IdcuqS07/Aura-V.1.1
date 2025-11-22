@@ -1,0 +1,9 @@
+{
+  "creditPassport": "0x2E707Ce007dFAb6767da02d740451EACf18E1e58",
+  "deployer": "0xC3EcE9AC328CB232dDB0BC677d2e980a1a3D3974",
+  "network": "amoy",
+  "chainId": "80002",
+  "timestamp": "2025-01-20T00:00:00.000Z",
+  "status": "deployed",
+  "authorized_minter": "0xC3EcE9AC328CB232dDB0BC677d2e980a1a3D3974"
+}

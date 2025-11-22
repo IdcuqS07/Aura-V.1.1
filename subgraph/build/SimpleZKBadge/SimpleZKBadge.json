@@ -1,0 +1,29 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "badgeType",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "name": "zkProofHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "BadgeMinted",
+    "type": "event"
+  }
+]

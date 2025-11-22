@@ -1,0 +1,12 @@
+{
+  "creditPassport": "0x1112373c9954B9bbFd91eb21175699b609A1b551",
+  "deployer": "0xC3EcE9AC328CB232dDB0BC677d2e980a1a3D3974",
+  "network": "amoy",
+  "chainId": "80002",
+  "timestamp": "2025-11-08T07:11:06.018Z",
+  "features": [
+    "user-mint",
+    "admin-mint",
+    "soulbound"
+  ]
+}

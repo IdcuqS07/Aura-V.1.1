@@ -1,0 +1,54 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  # ZK Badge Contract
+  - kind: ethereum
+    name: SimpleZKBadge
+    network: polygon-amoy
+    source:
+      address: "0x9e6343BB504Af8a39DB516d61c4Aa0aF36c54678"
+      abi: SimpleZKBadge
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Badge
+        - User
+        - GlobalStats
+      abis:
+        - name: SimpleZKBadge
+          file: ./abis/SimpleZKBadge.json
+      eventHandlers:
+        - event: BadgeMinted(indexed address,indexed uint256,string,bytes32)
+          handler: handleBadgeMinted
+      file: ./src/badge-mapping.ts
+  
+  # Credit Passport Contract
+  - kind: ethereum
+    name: CreditPassport
+    network: polygon-amoy
+    source:
+      address: "0xf85007A48DbD60B678Fa09ff379b8933b7525949"
+      abi: CreditPassport
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Passport
+        - ScoreUpdate
+        - User
+        - GlobalStats
+      abis:
+        - name: CreditPassport
+          file: ./abis/CreditPassport.json
+      eventHandlers:
+        - event: PassportIssued(indexed uint256,indexed address,uint256)
+          handler: handlePassportIssued
+        - event: ScoreUpdated(indexed uint256,uint256)
+          handler: handleScoreUpdated
+      file: ./src/passport-mapping.ts

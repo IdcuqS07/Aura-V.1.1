@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Contract</title>
+  <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
+</head>
+<body>
+  <h1>Test Contract Connection</h1>
+  <button onclick="testContract()">Test</button>
+  <pre id="result"></pre>
+
+  <script>
+    async function testContract() {
+      const result = document.getElementById('result');
+      try {
+        const provider = new ethers.providers.JsonRpcProvider('https://rpc-amoy.polygon.technology');
+        const abi = [{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"getUserBadges","outputs":[{"internalType":"uint256[]","name":"","type":"uint256[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}];
+        const contract = new ethers.Contract('0xa297944E0A63aDB57730687d44aF6235aa8D0DA7', abi, provider);
+        
+        const supply = await contract.totalSupply();
+        const badges = await contract.getUserBadges('0xb024196a8c1AB0b4960E2060Ceb4Ba32a43F2C29');
+        
+        result.textContent = `Total Supply: ${supply.toString()}\nUser Badges: ${badges.map(b => b.toString()).join(', ')}`;
+      } catch (error) {
+        result.textContent = `Error: ${error.message}`;
+      }
+    }
+  </script>
+</body>
+</html>

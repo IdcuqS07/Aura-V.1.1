@@ -1,28 +1,57 @@
-# Aura Protocol V.1
+# Aura Protocol V.1.1
 
 [![Live App](https://img.shields.io/badge/app-live-success)](https://www.aurapass.xyz/)
 [![On-Chain](https://img.shields.io/badge/on--chain-Polygon%20Amoy-8247E5)](https://amoy.polygonscan.com/)
+[![Version](https://img.shields.io/badge/version-1.1-blue)](https://github.com/IdcuqS07/Aura-V.1.1)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 Universal Trust in a Trustless World - Polygon ZK-ID Credit Layer
 
 ## 🌟 Overview
 
-Aura Protocol is a decentralized credibility layer that builds **ZK Credit Passports** — on-chain financial identities that verify reputation without revealing personal data.
+Aura Protocol V.1.1 is a **production-ready** decentralized credibility layer that builds **ZK Credit Passports** — on-chain financial identities that verify reputation without revealing personal data.
+
+### What's New in V.1.1
+- ✅ **AI Risk Oracle V2**: 4 ML models (Credit Risk, Default Predictor, Fraud Detector, Terms Recommender)
+- ✅ **19 Feature Extraction**: Passport, transaction, DeFi, social, and market data analysis
+- ✅ **Production Deployment**: Live at https://api.aurapass.xyz with full CORS support
+- ✅ **API Key System**: Bearer token authentication with rate limiting
+- ✅ **Real-time Analytics**: On-chain data from Polygon Amoy testnet
 
 **🔗 REAL ON-CHAIN DEPLOYMENT** on Polygon Amoy Testnet
 
-**Live Application**: [https://www.aurapass.xyz/](https://www.aurapass.xyz/)
+**Live Application**: [https://www.aurapass.xyz/](https://www.aurapass.xyz/)  
+**API Endpoint**: [https://api.aurapass.xyz](https://api.aurapass.xyz)
 
-## ✨ Wave 2 Features (Latest)
+## ✨ V.1.1 Features (Production Ready)
 
+### Core Infrastructure
 - ✅ **Soulbound NFT**: Non-transferable ZK-ID badges (ON-CHAIN)
 - ✅ **Credit Passport NFT**: Dynamic on-chain credit scores (ON-CHAIN)
-- ✅ **AI Risk Oracle**: ML-powered risk assessment (FLAGSHIP)
-- ✅ **Proof-as-a-Service API**: Generate and verify ZK proofs
 - ✅ **Smart Contracts Deployed**: Real contracts on Polygon Amoy
-- ✅ **The Graph Integration**: DeFi history indexing
-- ✅ **API Key Authentication**: Secure access with rate limiting
+- ✅ **Production API**: https://api.aurapass.xyz with nginx reverse proxy
+- ✅ **API Key Authentication**: Bearer token with rate limiting
+
+### AI Risk Oracle V2 (FLAGSHIP)
+- ✅ **4 ML Models**:
+  - Credit Risk Classifier (7 weighted features)
+  - Default Predictor (5 risk factors)
+  - Fraud Detector (anomaly detection)
+  - Terms Recommender (interest rate & LTV calculator)
+- ✅ **19 Feature Extraction**: Comprehensive data analysis
+- ✅ **Real-time Assessment**: API endpoint `/api/ai-oracle/assess`
+- ✅ **Batch Processing**: `/api/ai-oracle/batch-assess`
+- ✅ **Force Refresh**: Rate-limited partner API
+
+### Proof-as-a-Service
+- ✅ **Proof Generation**: `/api/proof/generate`
+- ✅ **Proof Verification**: `/api/proof/verify`
+- ✅ **On-chain Registry**: ProofRegistry contract integration
+
+### Analytics & Monitoring
+- ✅ **Real-time Dashboard**: On-chain data from Polygon Amoy
+- ✅ **Ecosystem Metrics**: Users, badges, passports, volume
+- ✅ **API Usage Tracking**: Per-key request counting
 
 ## 🛠️ Tech Stack
 
@@ -114,11 +143,13 @@ Access the application at `http://localhost:3000`
 - ✅ **Smart Contracts Deployed**: Polygon Amoy testnet
   
 
-### Wave 3: Expansion (Coming Soon)
+### Wave 3: Expansion (In Progress)
+- 🔄 **Real ZK Proofs**: Polygon ID integration
+- 🔄 **The Graph Subgraph**: Event indexing and historical data
+- 🔄 **Real DeFi Data**: Aave, Uniswap, Compound integration
 - 🔄 **Cross-Chain Layer (AuraX)**: Multi-chain support
-- 🔄 **AI Risk Oracle**: ML-powered risk assessment
 - 🔄 **Reputation DAO**: Decentralized governance
-- 🔄 **Multi-Chain Support**: Beyond Polygon
+- 🔄 **Dynamic Oracle Service**: Continuous 5-min updates (currently disabled)
 
 ## 📡 API Endpoints
 
@@ -141,8 +172,16 @@ Access the application at `http://localhost:3000`
 - `POST /api/blockchain/worldcoin-verify` - Worldcoin verification
 - `GET /api/blockchain/badges/{wallet_address}` - Get on-chain badges
 
+### AI Risk Oracle
+- `POST /api/ai-oracle/assess` - Get AI risk assessment (requires API key)
+- `POST /api/ai-oracle/batch-assess` - Batch risk assessment (requires API key)
+- `POST /api/ai-oracle/refresh/{address}` - Force refresh (rate-limited)
+- `GET /api/ai-oracle/stats` - Oracle statistics
+- `GET /api/ai-oracle/health` - Health check
+
 ### Analytics
 - `GET /api/analytics` - Get ecosystem analytics
+- `GET /api/analytics/onchain` - Real-time on-chain analytics
 
 ## 🔑 API Authentication
 
@@ -188,10 +227,12 @@ npx hardhat run scripts/deploy.js --network localhost
 
 ## 📚 Documentation
 
+- [Final TODO List](AURA_FINAL_TODO.md) - Complete development roadmap
+- [Data Flow Diagram](AURA_PROTOCOL_DATA_FLOW.md) - System architecture
+- [Passport Data Flow](passport-data-flow.md) - User journey flow
 - [Deployment Guide](DEPLOYMENT_GUIDE.md) - Deploy to Polygon Amoy
 - [Polygon Integration Guide](README_POLYGON_INTEGRATION.md)
 - [Integration Summary](INTEGRATION_SUMMARY.md)
-- [Wave 2 To-Do List](Wave2-TODO.md)
 - [Contributing Guidelines](CONTRIBUTING.md)
 
 ## 🗺️ Roadmap
@@ -209,11 +250,23 @@ MIT License - see [LICENSE](LICENSE) for details
 ## 🔗 Links
 
 - **Live Application**: https://www.aurapass.xyz/
-- **GitHub**: https://github.com/IdcuqS07/Aura-Protocol-V.1
+- **API Endpoint**: https://api.aurapass.xyz
+- **GitHub**: https://github.com/IdcuqS07/Aura-V.1.1
 - **Polygon Amoy Explorer**: https://amoy.polygonscan.com/
 - **SimpleZKBadge Contract**: https://amoy.polygonscan.com/address/0x9e6343BB504Af8a39DB516d61c4Aa0aF36c54678
 - **CreditPassport Contract**: https://amoy.polygonscan.com/address/0x1112373c9954B9bbFd91eb21175699b609A1b551
+- **ProofRegistry Contract**: https://amoy.polygonscan.com/address/0x296DB144E62C8C826bffA4503Dc9Fbf29F25D44B
 - **Testnet Guide**: [/testnet](https://www.aurapass.xyz/testnet)
+
+## 📊 Current Status
+
+**Version**: 1.1  
+**Wave 1**: ✅ 100% Complete  
+**Wave 2**: ✅ 100% Complete  
+**Wave 3**: 🔄 20% Complete  
+**Production**: ✅ Deployed & Live
+
+**Last Updated**: January 2025
 
 ---
 

@@ -192,7 +192,7 @@ async def get_oracle_stats():
             "success": True,
             "total_predictions": total_predictions,
             "risk_distribution": risk_distribution,
-            "model_version": "1.0.0",
+            "model_version="1.1.0",
             "model_type": "rule-based"
         }
         

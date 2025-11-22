@@ -222,6 +222,6 @@ async def health_check():
     return {
         "status": "healthy",
         "service": "Aura Protocol Public API",
-        "version": "1.0.0",
+        "version="1.1.0",
         "timestamp": datetime.now(timezone.utc).isoformat()
     }

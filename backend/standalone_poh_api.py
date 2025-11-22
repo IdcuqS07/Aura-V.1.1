@@ -18,7 +18,7 @@ mongo_url = os.getenv("MONGO_URL", "mongodb://localhost:27017")
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.getenv("DB_NAME", "aura_protocol")]
 
-app = FastAPI(title="Aura PoH API", version="1.0.0")
+app = FastAPI(title="Aura PoH API", version="1.1.0")
 
 app.add_middleware(
     CORSMiddleware,

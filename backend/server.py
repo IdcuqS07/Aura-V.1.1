@@ -72,7 +72,7 @@ async def lifespan(app: FastAPI):
     client.close()
 
 # Create the main app without a prefix
-app = FastAPI(title="Aura Protocol API", version="1.0.0", lifespan=lifespan)
+app = FastAPI(title="Aura Protocol API", version="1.1.0", lifespan=lifespan)
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
@@ -153,7 +153,7 @@ class AnalyticsData(BaseModel):
 async def root():
     return {
         "message": "Aura Protocol API",
-        "version": "1.0.0",
+        "version="1.1.0",
         "description": "Polygon ZK-ID Credit Layer"
     }
 

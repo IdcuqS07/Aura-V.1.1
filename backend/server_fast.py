@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 # Create app
 app = FastAPI(
     title="Aura Protocol API",
-    version="1.0.0",
+    version="1.1.0",
     description="Proof-as-a-Service API with on-chain integration"
 )
 

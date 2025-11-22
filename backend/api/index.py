@@ -21,7 +21,7 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ.get('DB_NAME', 'aura_protocol')]
 
 # Create the main app without a prefix
-app = FastAPI(title="Aura Protocol API", version="1.0.0")
+app = FastAPI(title="Aura Protocol API", version="1.1.0")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
@@ -102,7 +102,7 @@ class AnalyticsData(BaseModel):
 async def root():
     return {
         "message": "Aura Protocol API",
-        "version": "1.0.0",
+        "version="1.1.0",
         "description": "Polygon ZK-ID Credit Layer"
     }
 

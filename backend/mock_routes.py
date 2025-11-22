@@ -161,7 +161,7 @@ async def health_check():
     return {
         "status": "healthy",
         "service": "Aura Protocol API",
-        "version": "1.0.0",
+        "version="1.1.0",
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "database": "disconnected (using mock data)"
     }
@@ -171,7 +171,7 @@ async def root():
     """API root endpoint"""
     return {
         "message": "Aura Protocol API",
-        "version": "1.0.0",
+        "version="1.1.0",
         "status": "running",
         "docs": "/docs",
         "endpoints": {

@@ -18,7 +18,11 @@ from api_key_auth import verify_api_key, set_db
 
 from poh_routes import router as poh_router
 from passport_routes import router as passport_router
-from websocket_server import ws_manager
+try:
+    from websocket_server import ws_manager
+except ImportError:
+    ws_manager = None
+    logger.warning("⚠️ WebSocket manager not available")
 from monitoring_routes import monitoring_bp
 
 # Configure logging first
@@ -794,6 +798,30 @@ try:
     logger.info("✅ AI Oracle routes loaded")
 except ImportError as e:
     logger.warning(f"⚠️ AI Oracle routes not available: {e}")
+
+# Include API Key routes
+try:
+    from api_key_routes import router as api_key_router
+    app.include_router(api_key_router, prefix="/api")
+    logger.info("✅ API Key routes loaded")
+except ImportError as e:
+    logger.warning(f"⚠️ API Key routes not available: {e}")
+
+# Include Mock routes (for analytics fallback)
+try:
+    from mock_routes import router as mock_router
+    app.include_router(mock_router, prefix="/api")
+    logger.info("✅ Mock routes loaded")
+except ImportError as e:
+    logger.warning(f"⚠️ Mock routes not available: {e}")
+
+# Include ZK routes (for proof generation)
+try:
+    from zk_routes import zk_bp
+    app.include_router(zk_bp)
+    logger.info("✅ ZK routes loaded")
+except ImportError as e:
+    logger.warning(f"⚠️ ZK routes not available: {e}")
 
 app.add_middleware(
     CORSMiddleware,

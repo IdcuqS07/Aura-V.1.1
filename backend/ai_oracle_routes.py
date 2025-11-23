@@ -251,3 +251,29 @@ async def health_check():
         'version': '2.0.0',
         'timestamp': datetime.utcnow().isoformat()
     }
+
+
+@router.get("/service-status")
+async def get_service_status():
+    """Get dynamic oracle service status"""
+    try:
+        oracle = get_oracle_service(_db)
+        
+        # Get recent updates
+        recent_events = await _db.events.find(
+            {'event_type': 'passport_updated'}
+        ).sort('timestamp', -1).limit(10).to_list(10)
+        
+        return {
+            'running': oracle.running if oracle else False,
+            'update_interval': '5 minutes',
+            'recent_updates': len(recent_events),
+            'last_update': recent_events[0]['timestamp'].isoformat() if recent_events else None,
+            'status': 'active' if (oracle and oracle.running) else 'inactive'
+        }
+    except Exception as e:
+        return {
+            'running': False,
+            'status': 'error',
+            'error': str(e)
+        }

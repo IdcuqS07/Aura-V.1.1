@@ -18,6 +18,7 @@ const Navigation = () => {
     { path: '/passport', label: 'Passport' },
     { path: '/oracle', label: 'AI Oracle' },
     { path: '/badges', label: 'Badges' },
+    { path: '/partner/verify', label: 'Partner' },
     { path: '/api', label: 'API' },
     { path: '/analytics', label: 'Analytics' },
   ];

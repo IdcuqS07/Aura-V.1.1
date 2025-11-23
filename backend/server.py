@@ -1,6 +1,6 @@
 from fastapi import FastAPI, APIRouter, HTTPException, Security
 from dotenv import load_dotenv
-from starlette.middleware.cors import CORSMiddleware
+# from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 from contextlib import asynccontextmanager
 import os
@@ -23,7 +23,7 @@ try:
 except ImportError:
     ws_manager = None
     logger.warning("⚠️ WebSocket manager not available")
-from monitoring_routes import monitoring_bp
+# from monitoring_routes import monitoring_bp
 
 # Configure logging first
 logging.basicConfig(
@@ -47,12 +47,12 @@ async def lifespan(app: FastAPI):
     set_db(db)
     import poh_routes
     poh_routes.set_db(db)
-    import monitoring_routes
-    monitoring_routes.set_db(db)
+    # import monitoring_routes
+    # monitoring_routes.set_db(db)
     
     # Start monitoring
-    from monitor_runner import run_monitor
-    asyncio.create_task(run_monitor())
+    # from monitor_runner import run_monitor
+    # asyncio.create_task(run_monitor())
     
     # Start AI Oracle and Dynamic Oracle
     try:
@@ -157,7 +157,7 @@ class AnalyticsData(BaseModel):
 async def root():
     return {
         "message": "Aura Protocol API",
-        "version="1.1.0",
+        "version": "1.1.0",
         "description": "Polygon ZK-ID Credit Layer"
     }
 
@@ -789,7 +789,7 @@ except ImportError as e:
     logger.warning(f"⚠️ Threshold routes not available: {e}")
 
 # Include Monitoring routes
-app.include_router(monitoring_bp)
+# app.include_router(monitoring_bp)  # Flask Blueprint - not compatible with FastAPI
 
 # Include AI Oracle routes
 try:
@@ -833,12 +833,13 @@ try:
 except ImportError as e:
     logger.warning(f"⚠️ ZK routes not available: {e}")
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# CORS handled by nginx - commenting out to avoid duplicate headers
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_credentials=True,
+#     allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
 

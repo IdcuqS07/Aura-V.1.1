@@ -17,7 +17,7 @@ const Analytics = () => {
   const loadAnalytics = async () => {
     try {
       const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://159.65.134.137:9000';
-      const endpoint = '/api/analytics/onchain';
+      const endpoint = '/api/analytics';
       console.log('Fetching analytics from:', `${backendUrl}${endpoint}`);
       
       const response = await fetch(`${backendUrl}${endpoint}`);

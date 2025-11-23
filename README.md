@@ -14,6 +14,7 @@ Aura Protocol V.1.1 is a **production-ready** decentralized credibility layer th
 ### What's New in V.1.1
 - ✅ **AI Risk Oracle V2**: 4 ML models (Credit Risk, Default Predictor, Fraud Detector, Terms Recommender)
 - ✅ **19 Feature Extraction**: Passport, transaction, DeFi, social, and market data analysis
+- ✅ **Passport Verification System**: Three-tier access (Public, User, Partner) with shareable Passport IDs
 - ✅ **Production Deployment**: Live at https://api.aurapass.xyz with full CORS support
 - ✅ **API Key System**: Bearer token authentication with rate limiting
 - ✅ **Real-time Analytics**: On-chain data from Polygon Amoy testnet
@@ -42,6 +43,12 @@ Aura Protocol V.1.1 is a **production-ready** decentralized credibility layer th
 - ✅ **Real-time Assessment**: API endpoint `/api/ai-oracle/assess`
 - ✅ **Batch Processing**: `/api/ai-oracle/batch-assess`
 - ✅ **Force Refresh**: Rate-limited partner API
+
+### Passport Verification System (NEW)
+- ✅ **Public Verification**: `/api/passport/verify/{passport_id}` - No auth, returns validity & PoH status only
+- ✅ **Partner API**: `/api/passport/partner/{passport_id}` - Requires API key, returns full risk assessment
+- ✅ **Shareable Passport IDs**: Users can copy and share their Passport ID with partners
+- ✅ **Privacy-First Design**: Public endpoint shows no scores or owner information
 
 ### Proof-as-a-Service
 - ✅ **Proof Generation**: `/api/proof/generate`
@@ -163,6 +170,10 @@ Access the application at `http://localhost:3000`
 - `GET /api/passports/{user_id}` - Get passport
 - `GET /api/badges/{user_id}` - Get user badges
 
+### Passport Verification (NEW)
+- `GET /api/passport/verify/{passport_id}` - Public verification (no auth)
+- `GET /api/passport/partner/{passport_id}` - Partner verification (requires API key)
+
 ### Proof-as-a-Service (Requires API Key)
 - `POST /api/proof/generate` - Generate ZK proof
 - `POST /api/proof/verify` - Verify ZK proof
@@ -262,7 +273,7 @@ MIT License - see [LICENSE](LICENSE) for details
 **Version**: 1.1  
 **Wave 1**: ✅ 100% Complete  
 **Wave 2**: ✅ 100% Complete  
-**Wave 3**: 🔄 20% Complete  
+**Wave 3**: 🔄 25% Complete  
 **Production**: ✅ Deployed & Live
 
 **Last Updated**: November 2025

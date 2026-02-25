@@ -32,6 +32,7 @@ Aura Protocol V.1.1 is a **production-ready** decentralized credibility layer th
 - ✅ **Smart Contracts Deployed**: Real contracts on Polygon Amoy
 - ✅ **Production API**: https://api.aurapass.xyz with nginx reverse proxy
 - ✅ **API Key Authentication**: Bearer token with rate limiting
+- ✅ **Cross-Chain Passport**: LayerZero-powered multi-chain sync (5 testnets)
 
 ### AI Risk Oracle V2 (FLAGSHIP)
 - ✅ **4 ML Models**:
@@ -150,13 +151,12 @@ Access the application at `http://localhost:3000`
 - ✅ **Smart Contracts Deployed**: Polygon Amoy testnet
   
 
-### Wave 3: Expansion (In Progress)
+### Wave 3: Expansion (Complete ✅)
 - ✅ **Real DeFi Data**: Aave, Uniswap, Compound integration
 - ✅ **The Graph Subgraph**: Event indexing and historical data
-- ✅ **ZK Proofs**: Polygon ID integration (Mock ready) (NEW)
-- 🔄 **Cross-Chain Layer (AuraX)**: Multi-chain support
-- 🔄 **Reputation DAO**: Decentralized governance
-- 🔄 **Dynamic Oracle Service**: Continuous 5-min updates (currently disabled)
+- ✅ **ZK Proofs**: Polygon ID integration (Mock ready)
+- ✅ **Multi-Chain Deployment**: 15 contracts across 5 testnets
+- ✅ **Cross-Chain Layer (AuraX)**: LayerZero-powered passport sync
 
 ## 📡 API Endpoints
 
@@ -201,6 +201,12 @@ Access the application at `http://localhost:3000`
 - `GET /api/analytics` - Get ecosystem analytics
 - `GET /api/analytics/onchain` - Real-time on-chain analytics
 
+### Multi-Chain API (NEW)
+- `GET /api/multichain/chains` - List all supported chains
+- `GET /api/multichain/passport/{wallet}` - Get passport across all chains
+- `GET /api/multichain/sync-status/{wallet}` - Check sync status
+- `POST /api/multichain/estimate-sync-fee` - Estimate LayerZero fees
+
 ## 🔑 API Authentication
 
 ```bash
@@ -218,7 +224,33 @@ curl -X POST https://api.auraprotocol.com/proof/generate \
 
 ## 🧪 Smart Contracts (DEPLOYED ON-CHAIN)
 
-### Deployed Contracts on Polygon Amoy Testnet
+### Wave 5: Multi-Chain Deployment (15 Contracts)
+Deployed across 5 testnets: Polygon Amoy, Ethereum Sepolia, BSC Testnet, Arbitrum Sepolia, Optimism Sepolia
+
+**Contract Types** (3 per chain):
+- **SimpleZKBadge**: Soulbound NFT for ZK-ID badges
+- **CreditPassport**: Dynamic credit score NFT (0-1000)
+- **ProofRegistry**: On-chain proof verification
+
+### Wave 6: Cross-Chain Foundation (5 Contracts)
+**CrossChainPassport** - LayerZero-powered multi-chain passport sync
+
+- **Polygon Amoy**: `0x60741D73B27B17506525aFC9563D9Da7edffEDFD`
+  - [View on PolygonScan](https://amoy.polygonscan.com/address/0x60741D73B27B17506525aFC9563D9Da7edffEDFD)
+
+- **Ethereum Sepolia**: `0xFcf0eA6A3cd1C5A5c26bdD5F5A3Cd28659094844`
+  - [View on Etherscan](https://sepolia.etherscan.io/address/0xFcf0eA6A3cd1C5A5c26bdD5F5A3Cd28659094844)
+
+- **BSC Testnet**: `0x84E0e7Ba2CAD4386016d19ebfB4a7F12fBB58248`
+  - [View on BscScan](https://testnet.bscscan.com/address/0x84E0e7Ba2CAD4386016d19ebfB4a7F12fBB58248)
+
+- **Arbitrum Sepolia**: `0xb697a2D5F57718c26D55cBC7bE4A5b380465bB0f`
+  - [View on Arbiscan](https://sepolia.arbiscan.io/address/0xb697a2D5F57718c26D55cBC7bE4A5b380465bB0f)
+
+- **Optimism Sepolia**: `0xb697a2D5F57718c26D55cBC7bE4A5b380465bB0f`
+  - [View on Optimistic Etherscan](https://sepolia-optimism.etherscan.io/address/0xb697a2D5F57718c26D55cBC7bE4A5b380465bB0f)
+
+### Legacy Contracts (Polygon Amoy)
 - **SimpleZKBadge**: `0x9e6343BB504Af8a39DB516d61c4Aa0aF36c54678`
   - Soulbound NFT for ZK-ID badges
   - [View on PolygonScan](https://amoy.polygonscan.com/address/0x9e6343BB504Af8a39DB516d61c4Aa0aF36c54678)
@@ -282,7 +314,9 @@ MIT License - see [LICENSE](LICENSE) for details
 **Version**: 1.1  
 **Wave 1**: ✅ 100% Complete  
 **Wave 2**: ✅ 100% Complete  
-**Wave 3**: 🔄 80% Complete (DeFi ✅, Graph ✅, ZK ✅)  
+**Wave 3**: ✅ 100% Complete (DeFi ✅, Graph ✅, ZK ✅)  
+**Wave 5**: ✅ 100% Complete (15 contracts, 5 chains)  
+**Wave 6**: ✅ 100% Complete (Cross-chain sync via LayerZero)  
 **Production**: ✅ Deployed & Live
 
 **Last Updated**: December 2025

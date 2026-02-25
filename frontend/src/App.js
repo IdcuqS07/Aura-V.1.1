@@ -23,6 +23,7 @@ import EnhancedLiveDashboard from '@/components/EnhancedLiveDashboard';
 import ThresholdProof from '@/components/ThresholdProof';
 import PartnerVerify from '@/components/PartnerVerify';
 import MultiChainContracts from '@/components/MultiChainContracts';
+import CrossChainExplorer from '@/components/CrossChainExplorer';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
             <Route path="/threshold" element={<ThresholdProof />} />
             <Route path="/partner/verify" element={<PartnerVerify />} />
             <Route path="/contracts" element={<MultiChainContracts />} />
+            <Route path="/crosschain" element={<CrossChainExplorer />} />
           </Routes>
           <Footer />
         </BrowserRouter>

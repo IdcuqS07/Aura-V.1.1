@@ -1,11 +1,9 @@
 {
   "network": "optimismSepolia",
-  "chainId": 11155420,
-  "deployer": "0xC3EcE9AC328CB232dDB0BC677d2e980a1a3D3974",
-  "timestamp": "2026-01-27T16:00:33.081Z",
-  "contracts": {
-    "SimpleZKBadge": "0x9e6343BB504Af8a39DB516d61c4Aa0aF36c54678",
-    "CreditPassport": "0x296DB144E62C8C826bffA4503Dc9Fbf29F25D44B",
-    "ProofRegistry": "0x206E87B235661B13acC8E0bB7D39F9CA8B8Ade83"
-  }
+  "chainId": "11155420",
+  "lzChainId": 10232,
+  "lzEndpoint": "0x55370E0fBB5f5b8dAeD978BA1c075a499eB107B8",
+  "crossChainPassport": "0xb697a2D5F57718c26D55cBC7bE4A5b380465bB0f",
+  "deployedAt": "2026-02-25T19:37:03.506Z",
+  "deployer": "0xC3EcE9AC328CB232dDB0BC677d2e980a1a3D3974"
 }

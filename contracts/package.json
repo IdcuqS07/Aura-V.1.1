@@ -6,6 +6,9 @@
     "compile": "hardhat compile",
     "deploy": "hardhat run scripts/deploy.js --network polygon-amoy",
     "deploy:local": "hardhat run scripts/deploy.js --network localhost",
+    "deploy:all": "bash scripts/deploy-all-chains.sh",
+    "setup-remotes": "hardhat run scripts/setup-trusted-remotes.js",
+    "test-crosschain": "hardhat run scripts/test-crosschain.js",
     "test": "hardhat test"
   },
   "devDependencies": {
@@ -14,6 +17,7 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.9.0",
+    "@layerzerolabs/solidity-examples": "^1.1.0",
     "dotenv": "^16.6.1"
   }
 }

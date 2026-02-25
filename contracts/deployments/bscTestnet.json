@@ -1,11 +1,9 @@
 {
   "network": "bscTestnet",
-  "chainId": 97,
-  "deployer": "0xC3EcE9AC328CB232dDB0BC677d2e980a1a3D3974",
-  "timestamp": "2026-01-27T15:31:19.503Z",
-  "contracts": {
-    "SimpleZKBadge": "0x36C14E63D040D20e7259d7e5f03F43f7710df8b6",
-    "CreditPassport": "0x98Ea8DA03Cf68152Eb54608161F2347ee36C9259",
-    "ProofRegistry": "0x1Fa89b9EAec5D2AbcfE02548e9873330000C32C7"
-  }
+  "chainId": "97",
+  "lzChainId": 10102,
+  "lzEndpoint": "0x6Fcb97553D41516Cb228ac03FdC8B9a0a9df04A1",
+  "crossChainPassport": "0x84E0e7Ba2CAD4386016d19ebfB4a7F12fBB58248",
+  "deployedAt": "2026-02-25T19:35:49.134Z",
+  "deployer": "0xC3EcE9AC328CB232dDB0BC677d2e980a1a3D3974"
 }

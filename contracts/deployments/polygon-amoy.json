@@ -1,0 +1,9 @@
+{
+  "network": "polygon-amoy",
+  "chainId": "80002",
+  "lzChainId": 10267,
+  "lzEndpoint": "0x6EDCE65403992e310A62460808c4b910D972f10f",
+  "crossChainPassport": "0x60741D73B27B17506525aFC9563D9Da7edffEDFD",
+  "deployedAt": "2026-02-25T19:29:12.775Z",
+  "deployer": "0xC3EcE9AC328CB232dDB0BC677d2e980a1a3D3974"
+}

@@ -1,26 +1,13 @@
 #!/bin/bash
 
-VPS_IP="159.65.134.137"
-VPS_USER="root"
+# Build frontend
+cd frontend
+yarn build
 
-echo "🚀 Deploying Aura Protocol to VPS..."
+# Copy build to server
+scp -r build/* root@159.65.134.137:/var/www/aurapass.xyz/
 
-# Upload files to VPS
-rsync -avz --exclude node_modules --exclude venv . $VPS_USER@$VPS_IP:/opt/aura/
+# Restart nginx
+ssh root@159.65.134.137 "systemctl restart nginx"
 
-# SSH to VPS and deploy
-ssh $VPS_USER@$VPS_IP << 'EOF'
-cd /opt/aura
-docker-compose down
-docker-compose build
-docker-compose up -d
-
-# Setup SSL with Let's Encrypt
-if ! command -v certbot &> /dev/null; then
-    apt update && apt install -y certbot python3-certbot-nginx
-fi
-
-certbot --nginx -d aurapass.xyz -d www.aurapass.xyz --non-interactive --agree-tos -m admin@aurapass.xyz
-
-echo "✅ Deployment complete!"
-EOF
+echo "Deployment complete!"

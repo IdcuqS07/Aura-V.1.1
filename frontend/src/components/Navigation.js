@@ -57,6 +57,7 @@ const Navigation = () => {
         { path: '/partner/verify', label: 'Partner Portal' },
         { path: '/contracts', label: 'Multi-Chain' },
         { path: '/crosschain', label: 'Cross-Chain Explorer' },
+        { path: '/wave6', label: 'Wave 6 Dashboard' },
       ]
     },
   ];

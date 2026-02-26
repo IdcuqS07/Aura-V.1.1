@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Badge } from './ui/badge';
 import { useWallet } from '@/components/WalletContext';
 import { Shield, Award, Star, CheckCircle, Globe } from 'lucide-react';
 import { ethers } from 'ethers';

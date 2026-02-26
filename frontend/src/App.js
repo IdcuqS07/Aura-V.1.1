@@ -1,29 +1,28 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import '@/App.css';
-import { WalletProvider } from '@/components/WalletContext';
-import LandingPage from '@/components/LandingPage';
-import Dashboard from '@/components/Dashboard';
-import CreditPassport from '@/components/CreditPassport';
-import Analytics from '@/components/Analytics';
-import Roadmap from '@/components/Roadmap';
-import Navigation from '@/components/Navigation';
-import ZKBadgeDisplay from '@/components/ZKBadgeDisplay';
-import Footer from '@/components/Footer';
-import APIDashboard from '@/components/APIDashboard';
-import VerifyIdentity from '@/components/VerifyIdentity';
-import Waitlist from '@/components/Waitlist';
-import AdminWaitlist from '@/components/AdminWaitlist';
-import DirectMint from '@/components/DirectMint';
-import ProofOfHumanity from '@/components/ProofOfHumanity';
-import OnChainData from '@/pages/OnChainData';
-import RiskOracle from '@/components/RiskOracle';
-import LiveDashboard from '@/components/LiveDashboard';
-import EnhancedLiveDashboard from '@/components/EnhancedLiveDashboard';
-import ThresholdProof from '@/components/ThresholdProof';
-import PartnerVerify from '@/components/PartnerVerify';
-import MultiChainContracts from '@/components/MultiChainContracts';
-import CrossChainExplorer from '@/components/CrossChainExplorer';
+import './App.css';
+import { WalletProvider } from './components/WalletContext';
+import LandingPage from './components/LandingPage';
+import Dashboard from './components/Dashboard';
+import CreditPassport from './components/CreditPassport';
+import Analytics from './components/Analytics';
+import Roadmap from './components/Roadmap';
+import Navigation from './components/Navigation';
+import ZKBadgeDisplay from './components/ZKBadgeDisplay';
+import Footer from './components/Footer';
+import APIDashboard from './components/APIDashboard';
+import VerifyIdentity from './components/VerifyIdentity';
+import DirectMint from './components/DirectMint';
+import ProofOfHumanity from './components/ProofOfHumanity';
+import OnChainData from './pages/OnChainData';
+import RiskOracle from './components/RiskOracle';
+import LiveDashboard from './components/LiveDashboard';
+import EnhancedLiveDashboard from './components/EnhancedLiveDashboard';
+import ThresholdProof from './components/ThresholdProof';
+import PartnerVerify from './components/PartnerVerify';
+import MultiChainContracts from './components/MultiChainContracts';
+import CrossChainExplorer from './components/CrossChainExplorer';
+import Wave6Demo from './pages/Wave6Demo';
 
 function App() {
   return (
@@ -51,6 +50,7 @@ function App() {
             <Route path="/partner/verify" element={<PartnerVerify />} />
             <Route path="/contracts" element={<MultiChainContracts />} />
             <Route path="/crosschain" element={<CrossChainExplorer />} />
+            <Route path="/wave6" element={<Wave6Demo />} />
           </Routes>
           <Footer />
         </BrowserRouter>

@@ -855,6 +855,14 @@ try:
 except ImportError as e:
     logger.warning(f"⚠️ Polygon ZK Proof routes not available: {e}")
 
+# Include Cross-Chain Explorer routes (Wave 6)
+try:
+    from crosschain_explorer_routes import router as crosschain_router
+    app.include_router(crosschain_router)
+    logger.info("✅ Cross-Chain Explorer routes loaded")
+except ImportError as e:
+    logger.warning(f"⚠️ Cross-Chain Explorer routes not available: {e}")
+
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,

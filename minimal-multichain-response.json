@@ -1,0 +1,39 @@
+{
+  "chains": [
+    {
+      "name": "polygon_amoy",
+      "chain_id": 80002,
+      "rpc": "https://rpc-amoy.polygon.technology",
+      "explorer": "https://amoy.polygonscan.com",
+      "connected": true
+    },
+    {
+      "name": "ethereum_sepolia", 
+      "chain_id": 11155111,
+      "rpc": "https://ethereum-sepolia.publicnode.com",
+      "explorer": "https://sepolia.etherscan.io",
+      "connected": true
+    },
+    {
+      "name": "bsc_testnet",
+      "chain_id": 97,
+      "rpc": "https://data-seed-prebsc-1-s1.binance.org:8545",
+      "explorer": "https://testnet.bscscan.com", 
+      "connected": true
+    },
+    {
+      "name": "arbitrum_sepolia",
+      "chain_id": 421614,
+      "rpc": "https://sepolia-rollup.arbitrum.io/rpc",
+      "explorer": "https://sepolia.arbiscan.io",
+      "connected": true
+    },
+    {
+      "name": "optimism_sepolia",
+      "chain_id": 11155420,
+      "rpc": "https://sepolia.optimism.io",
+      "explorer": "https://sepolia-optimism.etherscan.io",
+      "connected": true
+    }
+  ]
+}
